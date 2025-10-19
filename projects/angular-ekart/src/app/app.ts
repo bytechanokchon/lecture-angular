@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('angular-ekart');
+  protected readonly title: string = "SuperApp"
 }
