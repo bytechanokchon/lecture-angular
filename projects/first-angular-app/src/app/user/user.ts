@@ -17,6 +17,7 @@ export class User {
   }
 
   onSelectUser(): void {
-    console.log('click');
+    const localRandomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+    this.selectedUser = DUMMY_USERS[localRandomIndex];
   }
 }
