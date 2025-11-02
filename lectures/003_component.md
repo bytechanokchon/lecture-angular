@@ -14,3 +14,9 @@
 - imports:
 - templateUrl: ระบุส่วนแสดงผลของ component
 - styleUrl: ระบุ style sheet ของ component
+
+## ส่วนประกอบของ component
+1. .ts จัดเก็บการประมวลผลของ component
+2. .html จัดเก็บการแสดงผลของ component
+3. .css จัดเก็บ style sheet ของ component
+4. .spec.ts จัดเก็บ unit test ของ component
