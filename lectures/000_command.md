@@ -11,3 +11,4 @@
 
 ### ng generate component <component_name>
     ใช้สำหรับสร้าง component
+    - สามารถเติม --skip-tests เพื่อไม่ให้สร้างไฟล์ test
