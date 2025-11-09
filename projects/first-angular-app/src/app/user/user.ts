@@ -1,5 +1,17 @@
 import { Component, computed, EventEmitter, Input, input, Output } from '@angular/core';
 
+// type UserModel = {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
+
+interface IUserModel {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-user',
   imports: [],
@@ -7,17 +19,19 @@ import { Component, computed, EventEmitter, Input, input, Output } from '@angula
   styleUrl: './user.css',
 })
 export class User {
-  @Input({ required: true }) id!: string;
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  @Input({ required: true }) user!: IUserModel;
+  
+  // @Input({ required: true }) id!: string;
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string;
   @Output('select') selectUserEvent = new EventEmitter<string>();
 
   get imagePath() {
-    return `images/users/${this.avatar}`;
+    return `images/users/${this.user.avatar}`;
   }
 
   onSelectUser(): void {
-    this.selectUserEvent.emit(this.id);
+    this.selectUserEvent.emit(this.user.id);
   }
 
   // @Input() avatar!: string;
