@@ -1,7 +1,10 @@
-<div>
-    <!-- [class.active]="isSelected" หมายถึง ให้เพิ่ม class active เมื่อเงื่อนไขเป็นจริง -->
-    <button [class.active]="isSelected" (click)="onSelectUser()">
-        <img [src]="imagePath" />
-        <span>{{ user.name }}</span>
-    </button>
-</div>
+<app-card>
+    <!-- เป็นการระบุ child component -->
+    <div>
+        <!-- [class.active]="isSelected" หมายถึง ให้เพิ่ม class active เมื่อเงื่อนไขเป็นจริง -->
+        <button [class.active]="isSelected" (click)="onSelectUser()">
+            <img [src]="imagePath" />
+            <span>{{ user.name }}</span>
+        </button>
+    </div>
+</app-card>
