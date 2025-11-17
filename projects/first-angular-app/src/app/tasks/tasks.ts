@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Task } from "./task/task";
 import { NewTask } from "./new-task/new-task";
 import { INewTaskModel } from './new-task/new-tasks.model';
+import TasksService from './task.service';
 
 @Component({
   selector: 'app-tasks',
@@ -13,57 +14,30 @@ export class Tasks {
   @Input({ required: true }) selectedUserId!: string;
   @Input({ required: true }) name!: string;
   isAddingTask: boolean = false;
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ];
+  private taskService!: TasksService;
+
+  constructor(taskService: TasksService) {
+    this.taskService = taskService;
+  }
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.selectedUserId);
+    return this.taskService.getUserTasks(this.selectedUserId);
   }
 
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
+  // onCompleteTask(id: string) {
+  //   this.taskService.removeTask(id);
+  // }
 
   onStartAddTask(): void {
     this.isAddingTask = true;
   }
 
-  onCancelAddTask(): void {
+  onCloseAddTask(): void {
     this.isAddingTask = false;
   }
 
   onAddTasks(taskData: INewTaskModel): void {
-    this.tasks.push({
-      id: new Date().getTime().toString(),
-      userId: this.selectedUserId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date
-    });
-
+    this.taskService.addTask(taskData, this.selectedUserId);
     this.isAddingTask = false;
   }
 }

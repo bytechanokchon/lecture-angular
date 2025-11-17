@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { INewTaskModel } from './new-tasks.model';
+import TasksService from '../task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -9,22 +10,30 @@ import { INewTaskModel } from './new-tasks.model';
   styleUrl: './new-task.css',
 })
 export class NewTask {
-  // ระบุ อนรก เพื่อบอกว่า event นี้เมือเกิดขึ้น จะไม่มีการส่งข้อมูลอะไร
-  @Output("cancel") cancelEvent = new EventEmitter<void>();
+  @Input({ required: true }) userId!: string;
+
+  // ระบุ void เพื่อบอกว่า event นี้เมือเกิดขึ้น จะไม่มีการส่งข้อมูลอะไร
+  @Output("close") closeEvent = new EventEmitter<void>();
   @Output('add') addEvent = new EventEmitter<INewTaskModel>();
   enteredTitle: string = '';
   enteredSummary: string = '';
   enteredDate: string = '';
+  private tasksService!: TasksService;
+
+  constructor(tasksService: TasksService) {
+    this.tasksService = tasksService;
+    
+  }
 
   onCancel(): void {
-    this.cancelEvent.emit();
+    this.closeEvent.emit();
   }
 
   onSubmit(): void {
-    this.addEvent.emit({
+    this.tasksService.addTask({
       title: this.enteredTitle,
       summary: this.enteredSummary,
       date: this.enteredDate
-    });
+    }, this.userId);
   }
 }
