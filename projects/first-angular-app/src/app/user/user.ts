@@ -15,6 +15,7 @@ import { IUserModel } from './user.model';
 })
 export class User {
   @Input({ required: true }) user!: IUserModel;
+  @Input({ required: true }) isSelected!: boolean;
   
   // @Input({ required: true }) id!: string;
   // @Input({ required: true }) avatar!: string;

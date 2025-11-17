@@ -1,5 +1,6 @@
 <div>
-    <button (click)="onSelectUser()">
+    <!-- [class.active]="isSelected" หมายถึง ให้เพิ่ม class active เมื่อเงื่อนไขเป็นจริง -->
+    <button [class.active]="isSelected" (click)="onSelectUser()">
         <img [src]="imagePath" />
         <span>{{ user.name }}</span>
     </button>
