@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ITaskModel } from './task.model';
-import { Card } from "../../shared/card/card";
-import { DatePipe } from '@angular/common';
 import TasksService from '../task.service';
 
 @Component({
