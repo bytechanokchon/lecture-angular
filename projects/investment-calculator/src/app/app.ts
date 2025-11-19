@@ -11,12 +11,12 @@ import { UserInputComponent } from "./user-input/user-input.component";
 export class App {
   protected readonly title = signal('investment-calculator');
 
-  calculateInvestmentResults(data: {
+  onCalculateInvestmentResults(data: {
     initialInvestment: number, 
     duration: number, 
     expectedReturn: number, 
     annualInvestment: number
-  }) {
+  }): void {
     const annualData = [];
     let investmentValue = data.initialInvestment;
 
@@ -36,6 +36,6 @@ export class App {
       });
     }
 
-    return annualData;
+    console.log(annualData);
   }
 }
